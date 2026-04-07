@@ -1,0 +1,18 @@
+# dependencies
+node_modules/
+
+# env files (nunca commitar chaves reais)
+.env
+.env.local
+.env.*.local
+
+# build output
+dist/
+
+# editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
