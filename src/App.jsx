@@ -547,7 +547,7 @@ export default function App() {
   const [ticked, setTicked] = useState({});
   const [capsuleDate, setCapsuleDate] = useState(()=>getStorage("helo-maria-cdate-v4",""));
   const [capsuleOpen, setCapsuleOpen] = useState(()=>getStorage("helo-maria-copen-v4",false));
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // ── Cápsula do tempo: persiste em localStorage (dado das donas) ──────────────
   useEffect(()=>{ setStorage("helo-maria-cdate-v4",capsuleDate); },[capsuleDate]);
@@ -556,18 +556,23 @@ export default function App() {
   // ── Carrega items e tiques do Supabase ────────────────────────────────────────
   useEffect(()=>{
     async function loadData() {
-      const { data: itemsData } = await supabase.from("items").select("*").order("created_at");
-      if (itemsData && itemsData.length > 0) setItems(itemsData);
+      try {
+        const { data: itemsData, error: itemsErr } = await supabase.from("items").select("*").order("created_at");
+        if (itemsErr) console.error("Supabase items error:", itemsErr);
+        if (itemsData && itemsData.length > 0) setItems(itemsData);
 
-      const { data: tickedData } = await supabase.from("ticked").select("*");
-      if (tickedData) {
-        const tickedMap = {};
-        tickedData.forEach(t => {
-          tickedMap[t.item_id] = { msg: t.msg, guestName: t.guest_name, at: t.created_at, id: t.id };
-        });
-        setTicked(tickedMap);
+        const { data: tickedData, error: tickedErr } = await supabase.from("ticked").select("*");
+        if (tickedErr) console.error("Supabase ticked error:", tickedErr);
+        if (tickedData) {
+          const tickedMap = {};
+          tickedData.forEach(t => {
+            tickedMap[t.item_id] = { msg: t.msg, guestName: t.guest_name, at: t.created_at, id: t.id };
+          });
+          setTicked(tickedMap);
+        }
+      } catch (e) {
+        console.error("Erro ao carregar dados:", e);
       }
-      setLoading(false);
     }
     loadData();
 
@@ -612,12 +617,6 @@ export default function App() {
   }
 
   const listLocked = !guestName;
-
-  if (loading) return (
-    <div style={{ minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",background:"linear-gradient(135deg,#fdf2f8,#f5f3ff)",fontFamily:"'Nunito',sans-serif",fontSize:22,color:"#be185d" }}>
-      🌸 Carregando...
-    </div>
-  );
 
   return (
     <div>
