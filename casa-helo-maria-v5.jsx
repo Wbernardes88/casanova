@@ -138,7 +138,7 @@ function FloatingMsg({ text, x, onDone }) {
 
 // ── TOAST ─────────────────────────────────────────────────────────────────────
 function Toast({ data, onClose }) {
-  useEffect(() => { const t = setTimeout(onClose, 5000); return ()=>clearTimeout(t); }, []);
+  useEffect(() => { const t = setTimeout(onClose, 10000); return ()=>clearTimeout(t); }, []);
   return (
     <>
       <div style={{ position:"fixed",inset:0,background:"rgba(0,0,0,.18)",zIndex:9990 }} onClick={onClose}/>
