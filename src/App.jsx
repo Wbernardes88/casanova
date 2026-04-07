@@ -165,7 +165,8 @@ function Toast({ data, onClose }) {
           fontFamily:"'Playfair Display',serif",fontWeight:900,fontSize:22,
           color:"#1f2937",marginBottom:10,lineHeight:1.3,
         }}>{data.msg}</div>
-        <div style={{ fontSize:14,color:"#6b7280",lineHeight:1.6,marginBottom:20 }}>{data.sub}</div>
+        <div style={{ fontSize:14,color:"#6b7280",lineHeight:1.6,marginBottom:8 }}>{data.sub}</div>
+        <div style={{ fontSize:11,color:"#9ca3af",fontWeight:700,marginBottom:20 }}>🛍️ Lembrando: a compra é por sua conta! Você decide o melhor lugar.</div>
         <div style={{ display:"flex",alignItems:"center",gap:10,marginBottom:16 }}>
           <div style={{ flex:1,height:1,background:"#fce7f3" }}/><span style={{fontSize:16}}>🏠</span>
           <div style={{ flex:1,height:1,background:"#fce7f3" }}/>
@@ -321,6 +322,7 @@ function GuestList({ guestName, items, ticked, onTick }) {
                 style={{ position:"relative",width:"100%",padding:"9px 0",borderRadius:12,border:"none",background:isDone?"linear-gradient(135deg,#bbf7d0,#86efac)":`linear-gradient(135deg,${item.color}33,${item.color}55)`,color:isDone?"#166534":"#be185d",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:12.5,cursor:isDone?"default":"pointer" }}>
                 {isDone?"✓ Garantido!":"Quero dar esse 🎁"}
               </button>
+              {!isDone && <div style={{ textAlign:"center",fontWeight:700,fontSize:11,color:"#be185d",marginTop:6 }}>🛍️ Você garante aqui, compra onde preferir!</div>}
             </div>
           );
         })}
