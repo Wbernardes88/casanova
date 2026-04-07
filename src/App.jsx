@@ -201,7 +201,7 @@ function TickModal({ item, guestName, onConfirm, onClose }) {
         </div>
         <div style={{ background:"linear-gradient(135deg,#fff0f6,#faf5ff)",border:"1.5px dashed #f9a8d4",borderRadius:16,padding:"14px 16px",marginBottom:16 }}>
           <p style={{ margin:0,fontSize:14,color:"#be185d",fontWeight:800,lineHeight:1.5 }}>💌 Deixa uma mensagem carinhosa pra Helo, Maria e Mel!</p>
-          <p style={{ margin:"6px 0 0",fontSize:12,color:"#9ca3af",lineHeight:1.6 }}>Psst… se não deixar, seu presente volta pra lista e outro convidado pode garantir ele antes! 😅</p>
+          <p style={{ margin:"6px 0 0",fontSize:12,color:"#9ca3af",lineHeight:1.6 }}>Psst… se não deixar, sua ideia de presente volta pra lista e outro convidado pode garantir ele antes! 😅</p>
         </div>
         <textarea
           placeholder="Escreve algo lindo pra elas aqui... 🏠✨"
